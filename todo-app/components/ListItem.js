@@ -2,8 +2,16 @@ import React from "react";
 import styles from "../styles/Home.module.css";
 import { gql, useMutation } from "@apollo/client";
 
-const UPDATE_TODO = gql``;
-const DELETE_TODO = gql``;
+const UPDATE_TODO = gql`
+  mutation Mutation($curId: Int!, $status: Boolean) {
+    updateItem(id: $curId, isCompleted: $status)
+  }
+`;
+const DELETE_TODO = gql`
+  mutation Mutation($curId: Int!) {
+    deleteItem(id: $curId)
+  }
+`;
 
 const ListItem = ({ item }) => {
   const [updateTodo, { udata, uloading, uerror }] = useMutation(UPDATE_TODO);
@@ -11,6 +19,7 @@ const ListItem = ({ item }) => {
 
   const handleCheck = () => {
     updateTodo({ variables: { curId: item.id, status: !item.isCompleted } });
+    window.location.reload();
   };
   // const handleEdit = () => {
   //   updateTodo({ variables: { curId: item.id, title:  } });
@@ -18,6 +27,7 @@ const ListItem = ({ item }) => {
   const handleDelete = e => {
     e.preventDefault();
     deleteTodo({ variables: { curId: item.id } });
+    window.location.reload();
   };
   return (
     <div className={styles.ListItem}>

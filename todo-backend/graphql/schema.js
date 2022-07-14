@@ -34,7 +34,7 @@ const typeDefs = gql`
     deleteItem(id: Int!): Int
     updateItem(
       id: Int!
-      title: String!
+      title: String
       description: String
       severity: severityType
       isCompleted: Boolean
