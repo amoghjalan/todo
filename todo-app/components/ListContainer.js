@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ListItem from "./ListItem";
 import AddItem from "./AddItem";
 
@@ -24,7 +23,7 @@ const ListContainer = () => {
   console.log(error);
 
   return (
-    <div className={styles.ListContainer}>
+    <div className={styles.grid}>
       {loading && <p>Loading..</p>}
       {error && <p>Error 404</p>}
       {data &&

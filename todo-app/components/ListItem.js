@@ -21,24 +21,21 @@ const ListItem = ({ item }) => {
     updateTodo({ variables: { curId: item.id, status: !item.isCompleted } });
     window.location.reload();
   };
-  // const handleEdit = () => {
-  //   updateTodo({ variables: { curId: item.id, title:  } });
-  // }
+
   const handleDelete = e => {
     e.preventDefault();
     deleteTodo({ variables: { curId: item.id } });
     window.location.reload();
   };
   return (
-    <div className={styles.ListItem}>
+    <div className={styles.Card}>
       <input
         type="checkbox"
         className={styles.checkbox}
         defaultChecked={item.isCompleted}
         onChange={handleCheck}
       />
-      <p className={styles.itemTitle}>{item.title}</p>
-      {/* <button className={styles.editButton}>Edit</button> */}
+      <h2 className={styles.itemTitle}>{item.title}</h2>
       <button className={styles.deleteButton} onClick={e => handleDelete(e)}>
         Delete
       </button>

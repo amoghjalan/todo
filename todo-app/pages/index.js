@@ -18,9 +18,7 @@ export default function Home() {
 
         <main className={styles.main}>
           <h1 className={styles.title}>Keep work Sorted!</h1>
-          <div className={styles.wrapper}>
-            <ListContainer />
-          </div>
+          <ListContainer />
         </main>
         <footer className={styles.footer}>
           <p>Amogh Jalan</p>
