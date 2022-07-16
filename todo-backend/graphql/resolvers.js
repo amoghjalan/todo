@@ -12,36 +12,30 @@ const dateScalar = new GraphQLScalarType({
 
 const resolvers = {
   Query: {
-    async allItems(root, { severity, dueDate }, { models }) {
-      if (severity && dueDate)
-        return models.Item.findAll({
-          where: {
-            severity: severity,
-            dueDate: dueDate
-          }
-        });
-      else if (severity)
-        return models.Item.findAll({
-          where: {
-            severity: severity
-          }
-        });
-      else if (dueDate)
-        return models.Item.findAll({
-          where: {
-            dueDate: dueDate
-          }
-        });
-      return models.Item.findAll();
+    async findAllUsers(root, args, { models }) {
+      return await models.User.findAll();
+    },
+    async findUserById(root, { id }, { models }) {
+      return await models.User.findByPk(id);
+    },
+    async findUserItems(root, { user_id, severity, dueDate }, { models }) {
+      return await models.Item.findAll({
+        where: {
+          user_id,
+          ...(severity && { severity }),
+          ...(dueDate && { dueDate })
+        }
+      });
     }
   },
   Mutation: {
-    async addItem(
+    async createItem(
       root,
-      { title, description, isCompleted, severity, dueDate },
+      { user_id, title, description, isCompleted, severity, dueDate },
       { models }
     ) {
       return models.Item.create({
+        user_id,
         title,
         description,
         severity,
@@ -51,11 +45,11 @@ const resolvers = {
     },
     async updateItem(
       root,
-      { id, title, description, isCompleted, severity, dueDate },
+      { id, user_id, title, description, isCompleted, severity, dueDate },
       { models }
     ) {
       const res = await models.Item.update(
-        { title, description, isCompleted, severity, dueDate },
+        { title, user_id, description, isCompleted, severity, dueDate },
         {
           where: {
             id: id
@@ -71,6 +65,12 @@ const resolvers = {
         }
       });
       return res;
+    },
+    async createUser(root, { username, email }, { models }) {
+      return await models.User.create({ username, email });
+    },
+    async deleteUser(root, { id }, { models }) {
+      return await models.User.destroy({ where: { id } });
     }
   },
   Date: dateScalar

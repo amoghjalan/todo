@@ -11,35 +11,49 @@ const typeDefs = gql`
   scalar Date
 
   type Item {
-    id: Int!
+    id: ID!
     title: String!
     description: String
     severity: severityType
     isCompleted: Boolean
     dueDate: Date
+    user_id: ID
+  }
+
+  type User {
+    id: ID!
+    username: String!
+    email: String!
+    todos: [Item!]
   }
 
   type Query {
-    allItems(severity: severityType, dueDate: Date): [Item]!
+    findAllUsers: [User!]!
+    findUserById(id: ID!): User
+    findUserItems(user_id: ID!, severity: severityType, dueDate: Date): [Item!]!
   }
 
   type Mutation {
-    addItem(
+    createItem(
+      user_id: ID!
       title: String!
       description: String
       severity: severityType
       isCompleted: Boolean
       dueDate: Date
     ): Item!
-    deleteItem(id: Int!): Int
     updateItem(
-      id: Int!
+      id: ID!
+      user_id: ID
       title: String
       description: String
       severity: severityType
       isCompleted: Boolean
       dueDate: Date
     ): [Int]
+    deleteItem(id: ID!): Int
+    createUser(username: String!, email: String!): User!
+    deleteUser(id: ID!): Int!
   }
 `;
 

@@ -3,6 +3,8 @@ const typeDefs = require("./graphql/schema");
 const resolvers = require("./graphql/resolvers");
 const models = require("./database/models");
 
+// models.sequelize.sync({ force: true });
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
