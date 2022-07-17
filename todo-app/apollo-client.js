@@ -9,11 +9,3 @@ const createClient = new ApolloClient({
 });
 
 export default createClient;
-function initializeApollo(initialState = null) {
-  const _apolloClient = apolloClient ? apolloClient : createClient();
-
-  if (initialState) {
-    const existingCache = _apolloClient.extract();
-    _apolloClient.cache.restore(...existingCache, ...initialState);
-  }
-}

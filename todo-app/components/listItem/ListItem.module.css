@@ -1,0 +1,110 @@
+.container {
+  flex: 1;
+  margin: 3px 15px;
+  position: relative;
+  max-width: 150px;
+  border: 2px solid teal;
+  background-color: lightblue;
+  border-radius: 6%;
+}
+
+.low {
+  background-color: beige;
+}
+
+.medium {
+  background-color: lightgoldenrodyellow;
+}
+
+.high {
+  background-color: lightsalmon;
+}
+
+.critical {
+  background-color: lightcoral;
+}
+
+.title {
+  margin-left: 5px;
+  margin-bottom: 20px;
+}
+
+.description {
+  margin-left: 5px;
+  height: 36px;
+  max-height: 36px;
+  color: gray;
+  overflow: hidden;
+}
+
+.buttons {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content:baseline;
+}
+
+.edit {
+  appearance: none;
+  background-color: #FAFBFC;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  color: #24292E;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  box-sizing: border-box;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 6px 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+.edit:hover {
+  background-color: #F3F4F6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.delete {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #FF7E31, #E62C03);
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 6px 16px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  z-index: 9;
+  border: 0;
+  transition: box-shadow .2s;
+}
+
+.delete:hover {
+  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+}
