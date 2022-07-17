@@ -95,8 +95,8 @@ mutation Mutation($updateItemId: ID!, $userId: ID, $title: String, $description:
 5. Delete Item
 
 ```
-mutation Mutation($deleteItemId: ID!, $userId: ID!) {
-  deleteItem(id: $deleteItemId, user_id: $userId)
+mutation Mutation($deleteItemId: ID!) {
+  deleteItem(id: $deleteItemId)
 }
 ```
 

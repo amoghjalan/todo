@@ -7,11 +7,18 @@ import AddItem from "../addItem/AddItem";
 import "./Home.module.css";
 import Loader from "../loader/Loader";
 import Error from "../error/Error";
-
+import AddUserModal from "../addUserModal/AddUserModal";
+import AddItemModal from "../addItemModal/AddItemModal";
 const Home = () => {
-  const usersData = useQuery(GET_USERS);
-  const [getUserData, userData] = useLazyQuery(GET_USERDATA);
-  const [getUserTasks, userTasks] = useLazyQuery(GET_USERTASKS);
+  const usersData = useQuery(GET_USERS, {
+    fetchPolicy: "no-cache"
+  });
+  const [getUserData, userData] = useLazyQuery(GET_USERDATA, {
+    fetchPolicy: "no-cache"
+  });
+  const [getUserTasks, userTasks] = useLazyQuery(GET_USERTASKS, {
+    fetchPolicy: "no-cache"
+  });
   console.log(usersData.data);
   console.log(userData.data);
   console.log(userTasks.data);
@@ -20,8 +27,8 @@ const Home = () => {
 
   return (
     <div>
-      {loading && <Loader />}
-      {error && <Error />}
+      {usersData.loading && <Loader />}
+      {usersData.error && <Error />}
       {usersData.data && (
         <>
           <Navbar
@@ -30,12 +37,7 @@ const Home = () => {
             getUserTasks={getUserTasks}
             setUserModal={setUserModal}
           />
-          {/* {addUserModal && (
-            <AddUserModal
-              getUserData={getUserData}
-              getUserTasks={getUserTasks}
-            />
-          )} */}
+          {addUserModal && <AddUserModal setisModalOpen={setUserModal} />}
           {userTasks.data ? (
             <>
               {/* <FilterContainer
@@ -45,12 +47,20 @@ const Home = () => {
               <ListContainer
                 userTasks={userTasks.data.findUserItems}
                 userID={userData.data.findUserById.id}
+                getUserTasks={getUserTasks}
               />
               <AddItem
                 setisModalOpen={setItemModal}
                 userID={userData.data.findUserById.id}
               />
-              {/* {addItemModal && <AddItemModal />} */}
+              {addItemModal && (
+                <AddItemModal
+                  getUserTasks={getUserTasks}
+                  setisModalOpen={setItemModal}
+                  users={usersData.data}
+                  currUserID={userData.data.findUserById.id}
+                />
+              )}
             </>
           ) : (
             <h3>Select User</h3>

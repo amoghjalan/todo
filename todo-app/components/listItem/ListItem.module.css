@@ -1,8 +1,9 @@
 .container {
   flex: 1;
-  margin: 3px 15px;
+  margin: 5px 15px;
   position: relative;
   max-width: 150px;
+  min-width: 150px;
   border: 2px solid teal;
   background-color: lightblue;
   border-radius: 6%;
@@ -44,6 +45,7 @@
   font-weight: 600;
   display: flex;
   align-items: center;
+  justify-content: center;
   justify-content:baseline;
 }
 
@@ -100,7 +102,6 @@
   -webkit-user-select: none;
   vertical-align: top;
   white-space: nowrap;
-  z-index: 9;
   border: 0;
   transition: box-shadow .2s;
 }
